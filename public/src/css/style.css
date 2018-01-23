@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css?family=Amaranth");
+
+.page-init {
+	padding-top: 40px;
+	font-family: 'Amaranth';
+}
+
+.search-container, 
+.page-heading {
+	text-align: center;
+}
+
+.search-button, 
+.add-button, 
+.del-button {
+	width: 150px;
+	font-size: 16px;
+}
+
+.search-icon {
+	width: 18px;
+}
+
+.result-container {
+	display: none;
+	padding-top: 30px;
+}
+
+.result-heading {
+	color: #007bff;
+	font-size: 24px;
+}
+
+.result-list {
+	font-size: 20px;
+	padding-left: 10px;
+}
+
+.list-item {
+	color: black;
+}
+
+.add-button-row, .del-button-row {
+	padding-top: 40px;
+}
