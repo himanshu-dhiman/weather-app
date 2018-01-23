@@ -24,12 +24,13 @@ class WeatherLocation
 		$get_locations_query = "SELECT * FROM location";
 		$queried_locations = mysqli_query($GLOBALS['conn'], $get_locations_query);
 		if( ! $queried_locations ) {
-			$create_table_query = "CREATE TABLE IF NOT EXISTS location (
-						  id int(11) AUTO_INCREMENT,
-						  name varchar(255) NOT NULL UNIQUE,
-						  country varchar(255) NOT NULL,
-						  link varchar(255) NOT NULL,
-						  PRIMARY KEY  (id)
+			$create_table_query = "
+				CREATE TABLE IF NOT EXISTS location (
+				id int(11) AUTO_INCREMENT,
+				name varchar(255) NOT NULL UNIQUE,
+				country varchar(255) NOT NULL,
+				link varchar(255) NOT NULL,
+				PRIMARY KEY  (id)
 			)";
 			$result = mysqli_query($GLOBALS['conn'], $create_table_query);
 			return NULL;
