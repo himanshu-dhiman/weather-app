@@ -10,7 +10,7 @@
 			case 'del_location': 	$status = del_location();
 									echo json_encode($status);
 									break;
-			default : 	echo "Invalid...";
+			default :	echo "Invalid...";
 						break;
 		}
 	}

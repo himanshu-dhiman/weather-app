@@ -1,7 +1,7 @@
 <?php
 	include('config/constants.php');
-	$conn = mysqli_connect( DB_HOST, DB_USER, DB_PASS );
-	mysqli_select_db($conn, DB_NAME);
+	$db_connection = mysqli_connect( DB_HOST, DB_USER, DB_PASS );
+	mysqli_select_db($db_connection, DB_NAME);
 
 	function add_location() {
 		if ( ! isset($_POST['country']) || ! isset($_POST['name']) || ! isset($_POST['link']) ) {
@@ -11,17 +11,17 @@
 			$country = $_POST['country'];
 			$link = $_POST['link'];
 			$name = $_POST['name'];
-			if( ! $GLOBALS['conn'] ) {
+			if( ! $GLOBALS['db_connection'] ) {
 				$response['status'] = 'error';
 				return $response;
 			}
 			$add_query = "INSERT INTO location (name, country, link) VALUES ('$name', '$country', '$link')";
-			$retval = mysqli_query($GLOBALS['conn'], $add_query);
-			if(! $retval ) {
+			$add_status = mysqli_query($GLOBALS['db_connection'], $add_query);
+			if(! $add_status ) {
 				$response['status'] = 'error';
 				return $response; 
 			}
-			mysqli_close($GLOBALS['conn']);
+			mysqli_close($GLOBALS['db_connection']);
 			$response['status'] = 'success';
 			return $response;
 		}
@@ -33,17 +33,17 @@
 			return $response;
 		} else {
 			$id = $_POST['id'];
-			if( ! $GLOBALS['conn'] ) {
+			if( ! $GLOBALS['db_connection'] ) {
 				$response['status'] = 'error';
 				return $response;
 			}
 			$del_query = "DELETE FROM location WHERE id='$id'";
-			$delete_status = mysqli_query($GLOBALS['conn'], $del_query);
+			$delete_status = mysqli_query($GLOBALS['db_connection'], $del_query);
 			if(! $delete_status ) {
 				$response['status'] = 'error';
 				return $response; 
 			}
-			mysqli_close($GLOBALS['conn']);
+			mysqli_close($GLOBALS['db_connection']);
 			$response['status'] = 'success';
 			return $response;
 		}

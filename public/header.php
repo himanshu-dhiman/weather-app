@@ -2,6 +2,7 @@
 	session_start();
 	include( 'class/class-weather.php' );
 	$locations = new WeatherLocation();
+	
 	if ( ! isset($locations->saved_locations) && $_SERVER['PHP_SELF'] == '/weather.php' ) {
 		header( "Location: index.php" );
 		die();
@@ -12,6 +13,7 @@
 		header( "Location: index.php" );
 		die();
 	}
+
 	if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
 		$ip_address = $_SERVER['HTTP_CLIENT_IP'];
 	} else if ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
@@ -19,6 +21,7 @@
 	} else if ( ! empty($_SERVER['REMOTE_ADDR'] ) ) {
 		$ip_address = $_SERVER['REMOTE_ADDR'];
 	}
+	
 	$ip_data_response = json_decode( file_get_contents( "http://www.geoplugin.net/json.gp?ip=" . $ip_address ) );
 	$ip_country = $ip_data_response->geoplugin_countryCode;
 ?>
